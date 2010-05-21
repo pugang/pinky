@@ -1,21 +1,10 @@
 package org.pinky.controlstructure
 
-
+import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
 import org.mockito.Mockito._
-import org.scalatest.matchers.ShouldMatchers
-import _root_.scala.collection.jcl._
-import _root_.javax.servlet.http.{HttpServletResponse, HttpServletRequest}
 import org.pinky.representation.{Representation, Representations}
 import org.scalatest.Spec
-
-
-/**
- * Created by IntelliJ IDEA.
- * User: phausel
- * Date: Jan 21, 2009
- * Time: 2:09:00 PM
- * To change this template use File | Settings | File Templates.
- */
+import org.scalatest.matchers.ShouldMatchers
 
 
 class DispatchTest extends Spec with ShouldMatchers {
@@ -50,9 +39,7 @@ class DispatchTest extends Spec with ShouldMatchers {
       //now run the actual test
       val control = new DefaultControl(representation)
       control.call(request, response) {
-        val data = new HashMap[String, AnyRef]()
-        data += "message" -> "hello world"
-        data
+        Map("message" -> "hello world")
       }
       verify(response).setStatus(500)
 
@@ -72,13 +59,11 @@ class DispatchTest extends Spec with ShouldMatchers {
       //now run the actual test
       val control = new DefaultControl(representation)
       control.call(request, response) {
-        val data = new HashMap[String, AnyRef]()
-        data += "message" -> "hello world"
-        data
+        Map("message" -> "hello world")
       }
-      val assumed = new HashMap[String, AnyRef]()
-      assumed += "message" -> "hello world"
-      assumed += "template" -> "/hello/index"
+      val assumed = Map(
+        "message" -> "hello world",
+        "template" -> "/hello/index")
       verify(response).setContentType("text/html")
       verify(response, never).setStatus(500)
       verify(concreteRepresentation).write(assumed, out)
@@ -99,12 +84,9 @@ class DispatchTest extends Spec with ShouldMatchers {
       //now run the actual test
       val control = new DefaultControl(representation)
       control.call(request, response) {
-        val data = new HashMap[String, AnyRef]()
-        data += "message" -> "hello world"
-        data
+        Map("message" -> "hello world")
       }
-      val assumed = new HashMap[String, AnyRef]()
-      assumed += "message" -> "hello world"
+      val assumed = Map("message" -> "hello world")
       verify(response).setContentType("text/rss")
       verify(response, never).setStatus(500)
       verify(concreteRepresentation).write(assumed, out)

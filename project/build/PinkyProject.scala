@@ -2,6 +2,9 @@ import sbt._
 
 class PinkyProject(info: ProjectInfo) extends DefaultProject(info) {
     val guiceMaven = "guice maven repository" at "http://guice-maven.googlecode.com/svn/trunk"
+
+    // Needed until there's a 2.8 scalatest
+    val scalaSnapshots = ScalaToolsSnapshots
     
     val akka_repo = "akka maven repository" at "http://scalablesolutions.se/akka/repository"
     val akka_databinder = "DataBinder" at "http://databinder.net/repo"
@@ -10,7 +13,7 @@ class PinkyProject(info: ProjectInfo) extends DefaultProject(info) {
     val akka_jBoss = "jBoss" at "http://repository.jboss.org/maven2"
     val jetty_repo = "jetty repository" at "http://oss.sonatype.org/content/groups/jetty"
 
-    val akka = "se.scalablesolutions.akka" % "akka-core" % "0.6" % "compile"
+    val akka = "se.scalablesolutions.akka" % "akka-core_2.8.0.Beta1" % "0.8.1" % "compile"
     val jettyComet = "org.eclipse.jetty" % "jetty-continuation" % "7.0.2-SNAPSHOT" % "compile" 
     val io = "commons-io" % "commons-io" % "1.5-SNAPSHOT" % "compile"
     
@@ -28,7 +31,8 @@ class PinkyProject(info: ProjectInfo) extends DefaultProject(info) {
     val mockito = "org.mockito" % "mockito-core" % "1.6" % "test->default"
     val h2database = "com.h2database" % "h2" % "1.0.20070617" % "test->default"
     val servlet = "javax.servlet" % "servlet-api" % "2.5" % "provided" 
-    val scalatest = "org.scalatest" % "scalatest" % "1.0" % "test->default" 
+    val scalatest = "org.scalatest" % "scalatest" %
+                      "1.0.1-for-scala-2.8.0.RC1-SNAPSHOT" % "test->default"
     override def packageDocsJar = defaultJarPath("-javadoc.jar")
     override def packageSrcJar= defaultJarPath("-sources.jar")
 

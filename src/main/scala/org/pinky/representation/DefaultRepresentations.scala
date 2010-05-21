@@ -3,7 +3,6 @@ package org.pinky.representation
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.google.inject.name.Named
-import scala.collection.jcl._
 
 /**
  * Provides the default representations, pinky supports json/rss/xml/html
@@ -18,13 +17,13 @@ import scala.collection.jcl._
 
 @Singleton
 class DefaultRepresentations extends Representations {
-  private val contentTypes = new HashMap[String, String]
-  contentTypes += "html" -> "text/html"
-  contentTypes += "rss" -> "application/rss+xml"
-  contentTypes += "xml" -> "text/xml"
-  contentTypes += "json" -> "application/json"
+  private val contentTypes = Map(
+    "html" -> "text/html",
+    "rss" -> "application/rss+xml",
+    "xml" -> "text/xml",
+    "json" -> "application/json")
 
-  private val representationModes = new HashMap[String, Representation]()
+  private var representationModes = Map.empty[String, Representation]
 
   @Inject
   def injectJsonRep(@Named("json") jsonRep: Representation) {
@@ -46,11 +45,7 @@ class DefaultRepresentations extends Representations {
     representationModes += "rss" -> rssRep
   }
 
-  def mode: Map[String, Representation] = {
-    representationModes
-  }
+  def mode: Map[String, Representation] = representationModes
 
-  def contentType: Map[String, String] = {
-    contentTypes
-  }
+  def contentType: Map[String, String] = contentTypes
 }

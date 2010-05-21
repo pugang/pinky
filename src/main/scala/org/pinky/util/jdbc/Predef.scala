@@ -154,7 +154,7 @@ object Predef {
   class RichStatement(val s: Statement) {
     def execute(sql: String): Unit = {s.execute(sql); this}
 
-    def execute(sql: Seq[String]): Unit = {for (val x <- sql) s.execute(x); this}
+    def execute(sql: Seq[String]): Unit = {for (x <- sql) s.execute(x); this}
   }
 
 

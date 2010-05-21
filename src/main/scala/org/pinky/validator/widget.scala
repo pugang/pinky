@@ -1,19 +1,11 @@
 package org.pinky.validator
 
-import collection.mutable.Map
 import org.pinky.util.Elvis.?
 import org.pinky.annotation.form.{CheckBox, RadioButton, DropDown}
 import net.sf.oval.configuration.annotation.AbstractAnnotationCheck
 import net.sf.oval.Validator
 import net.sf.oval.context.OValContext
 
-/**
- * Created by IntelliJ IDEA.
- * User: phausel
- * Date: Aug 23, 2009
- * Time: 2:13:59 PM
- * To change this template use File | Settings | File Templates.
- */
 
 trait BaseValidator {
   def isSatisfied(validatedObject: Object, value: Object, context: OValContext, validator: Validator): Boolean = {

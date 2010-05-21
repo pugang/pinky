@@ -2,8 +2,6 @@ package org.pinky.representation
 
 import java.io.{BufferedWriter, OutputStreamWriter, OutputStream}
 
-import scala.collection.jcl.Map
-
 /**
  * Provides an RSS 2.0 representation using Scala's XML support,
  * you can utilize this module by registering .rss extension in your Servlet mapping in your listener
@@ -12,9 +10,8 @@ import scala.collection.jcl.Map
  */
 class RssRepresentation extends Representation {
   def write(data: Map[String, AnyRef], out: OutputStream) = {
-    data.removeKey("template")
     val outWriter = new BufferedWriter(new OutputStreamWriter(out))
-    outWriter.write(rssTemplate(data))
+    outWriter.write(rssTemplate(data - "template"))
     outWriter.close
   }
 

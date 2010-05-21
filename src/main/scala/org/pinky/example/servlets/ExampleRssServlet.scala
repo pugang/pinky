@@ -1,13 +1,12 @@
 package org.pinky.example.servlets
 
-
 import _root_.javax.servlet.http.{HttpServletResponse, HttpServletRequest, HttpServlet}
-import _root_.scala.collection.jcl.{HashMap, ArrayList}
 import com.google.inject._
-import java.util.Date
 import java.text.DateFormat
-import org.pinky.representation.{RssItem, RssHeader}
+import java.util.Date
+
 import org.pinky.controlstructure.Dispatch
+import org.pinky.representation.{RssItem, RssHeader}
 
 /**
  * An rss controller(serlvet) exmaple
@@ -35,11 +34,9 @@ class ExampleRssServlet @Inject()(dispatch: Dispatch) extends HttpServlet {
             today, "http://localstation.com/item11#1")
           )
 
-        //setup return values
-        val data = new HashMap[String, AnyRef]
-        data += "rssitems" -> rssList
-        data += "rssheader" -> rssHeader
-        data
+        // setup return values
+        Map("rssitems" -> rssList,
+            "rssheader" -> rssHeader)
       }
 
     }

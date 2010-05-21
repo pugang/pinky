@@ -1,13 +1,13 @@
 package org.pinky.representation
 
 import java.io.{BufferedWriter, OutputStreamWriter, OutputStream}
-import scala.collection.jcl._
+import scala.collection.JavaConversions._
 
 class XmlRepresentationStraightScala extends Representation {
-  def write(data: Map[String, AnyRef], out: OutputStream) = {
-    data.removeKey("template")
+  def write(dataWithTemplate: Map[String, AnyRef], out: OutputStream) = {
+    val data = dataWithTemplate - "template"
     val outWriter = new BufferedWriter(new OutputStreamWriter(out))
-    var xml = new StringBuffer("<map>")
+    val xml = new StringBuffer("<map>")
     data.foreach((entry) =>
       {
         xml.append("<entry>\n<java.lang.String>" + entry._1 + "</java.lang.String> \n"

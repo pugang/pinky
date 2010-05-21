@@ -1,15 +1,14 @@
 package org.pinky.example
 
-
 import com.google.inject.servlet.ServletModule
 import org.pinky.controlstructure.{ActorClient, RepresentationModule, PinkyServletContextListener}
 import servlets._
-import org.pinky.comet.CometServlet
 import org.eclipse.jetty.continuation.ContinuationFilter
 import com.google.inject.{Scopes, AbstractModule}
 
 /**
- * Listener example which demonstrates how to configure guice managed filters, servlets and other components the "pinky way"
+ * Listener example which demonstrates how to configure guice managed filters,
+ * servlets and other components the "pinky way"
  *
  * @author peter hausel gmail com (Peter Hausel)
  *

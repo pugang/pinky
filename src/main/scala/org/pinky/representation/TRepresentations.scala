@@ -1,7 +1,5 @@
 package org.pinky.representation
 
-import scala.collection.jcl._
-
 /**
  * Main trait that provides various representations
  * See an example at   { @link DefaultRepresentations }

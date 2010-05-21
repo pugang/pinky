@@ -1,22 +1,11 @@
 package org.pinky.representation
 
-
-import _root_.scala.collection.jcl.HashMap
 import java.io.ByteArrayOutputStream
 import java.text.DateFormat
 import java.util.Date
 import org.scalatest.Spec
-
 import org.scalatest.matchers.ShouldMatchers
 
-
-/**
- * Created by IntelliJ IDEA.
- * User: phausel
- * Date: Jan 21, 2009
- * Time: 11:49:56 AM
- * To change this template use File | Settings | File Templates.
- */
 
 class RssRepresentationTest extends Spec with ShouldMatchers {
   describe("An RSS representation") {
@@ -24,8 +13,7 @@ class RssRepresentationTest extends Spec with ShouldMatchers {
       var exceptionIsThrown = false
       try {
         val out = new ByteArrayOutputStream();
-        val data = new HashMap[String, AnyRef]
-        data += "message" -> "hello world"
+        val data = Map("message" -> "hello world")
         val representation = new RssRepresentation()
         representation.write(data, out)
       } catch {
@@ -39,8 +27,7 @@ class RssRepresentationTest extends Spec with ShouldMatchers {
       var exceptionIsThrown = false
       try {
         val out = new ByteArrayOutputStream();
-        val data = new HashMap[String, AnyRef]
-        data += "rssitems" -> "hello world"
+        val data = Map("rssitems" -> "hello world")
         val representation = new RssRepresentation()
         representation.write(data, out)
       } catch {
@@ -66,9 +53,9 @@ class RssRepresentationTest extends Spec with ShouldMatchers {
         )
 
       //setup return values
-      val data = new HashMap[String, AnyRef]
-      data += "rssitems" -> rssList
-      data += "rssheader" -> rssHeader
+      val data = Map(
+            "rssitems" -> rssList,
+            "rssheader" -> rssHeader)
       val out = new ByteArrayOutputStream();
 
       val representation = new RssRepresentation()
